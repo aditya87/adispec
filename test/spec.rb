@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-require '../fun'
+require '../aditest'
 require './arr'
 
 describe('array') {
