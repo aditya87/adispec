@@ -26,7 +26,9 @@ def it(desc, &func)
   print desc + ": "
   Section::lastspec.inc_tests
   begin
+    Section::lastspec.run_setups
     func.call
+    Section::lastspec.run_cleanups
   rescue BlockError
     Section::lastspec.inc_fails
     puts
@@ -34,4 +36,12 @@ def it(desc, &func)
   end
   Section::lastspec.inc_passes
   puts
+end
+
+def setup(&func)
+  Section::lastspec.push_setup(func)
+end
+
+def cleanup(&func)
+  Section::lastspec.push_cleanup(func)
 end

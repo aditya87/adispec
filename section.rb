@@ -4,11 +4,10 @@ class Section
     @tests = 0
     @passes = 0
     @fails = 0
-    if defined? @@specstack
-      @@specstack.push self
-    else
-      @@specstack = [self]
-    end
+    @setups = []
+    @cleanups = []
+    @@specstack ||= []
+    @@specstack.push self
   end
 
   def tests
@@ -33,6 +32,26 @@ class Section
 
   def inc_fails(n = 1)
     @fails += n
+  end
+
+  def push_setup(block)
+    @setups << block
+  end
+
+  def push_cleanup(block)
+    @cleanups << block
+  end
+
+  def run_setups
+    @setups.each do |setup|
+      setup.call
+    end
+  end
+
+  def run_cleanups
+    @cleanups.each do |cleanup|
+      cleanup.call
+    end
   end
 
   def self.lastspec
