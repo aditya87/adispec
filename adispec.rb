@@ -2,71 +2,36 @@ require 'sourcify'
 require 'colorize'
 require_relative './exceptions'
 require_relative './assertions'
-
-class Spec
-  def initialize(desc)
-    @desc = 0
-    @tests = 0
-    @passes = 0
-    @fails = 0
-    @@lastspec = self
-  end
-
-  def tests
-    @tests
-  end
-
-  def passes
-    @passes
-  end
-
-  def fails
-    @fails
-  end
-
-  def inc_tests
-    @tests += 1
-  end
-
-  def inc_passes
-    @passes += 1
-  end
-
-  def inc_fails
-    @fails += 1
-  end
-
-  def self.lastspec
-    @@lastspec
-  end
-end
-
-def spec(desc, &func)
-  sp = Spec.new(desc)
-  puts desc.yellow
-  func.call
-  msg = <<EOM
-Result: #{sp.tests} ran, #{sp.passes.to_s.green} #{"passed".green}, #{sp.fails.to_s.red} #{"failed".red}
-EOM
-  puts msg
-end
+require_relative './section'
 
 def describe(desc, &func)
+  sp = Section.new(desc)
   puts desc.blue + ":"
   func.call
-  puts
+  Section::specstack.pop
+  if Section::specstack.empty?
+    puts
+    msg = <<EOM
+Result: #{sp.tests} ran, #{sp.passes.to_s.green} #{"passed".green}, #{sp.fails.to_s.red} #{"failed".red}
+EOM
+    puts msg
+  else
+    Section::lastspec.inc_tests sp.tests
+    Section::lastspec.inc_passes sp.passes
+    Section::lastspec.inc_fails sp.fails
+  end
 end
 
 def it(desc, &func)
   print desc + ": "
-  Spec::lastspec.inc_tests
+  Section::lastspec.inc_tests
   begin
     func.call
   rescue BlockError
-    Spec::lastspec.inc_fails
+    Section::lastspec.inc_fails
     puts
     return
   end
-  Spec::lastspec.inc_passes
+  Section::lastspec.inc_passes
   puts
 end

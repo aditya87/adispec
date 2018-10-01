@@ -1,7 +1,7 @@
 require_relative '../adispec'
 require_relative './arr'
 
-spec('Array') {
+describe('Array') {
   describe('happy path') {
     it('instantiates as an empty array') {
       subject = Arr.new()
