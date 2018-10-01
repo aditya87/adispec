@@ -1,4 +1,3 @@
-#!/usr/bin/ruby
 require '../aditest'
 require './arr'
 
