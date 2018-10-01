@@ -18,3 +18,5 @@ class AssertExceptionError < RuntimeError
   end
 end
 
+class BlockError < RuntimeError
+end
