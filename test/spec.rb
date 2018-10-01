@@ -1,5 +1,5 @@
-require '../aditest'
-require './arr'
+require_relative '../aditest'
+require_relative './arr'
 
 describe('array') {
   it('instantiates as an empty array') {
