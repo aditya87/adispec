@@ -1,5 +1,6 @@
 require 'sourcify'
 require 'colorize'
+require_relative './exceptions'
 
 def describe(desc, &func)
   puts desc.blue + ":"
@@ -34,25 +35,5 @@ def assertRaise &block
   raise AssertExceptionError.new(&block)
   rescue AssertExceptionError => e
     puts "x".red + " " + e.message
-  end
-end
-
-class AssertionError < RuntimeError
-  def initialize(&block)
-    @msg = "Assertion " + block.to_source + " failed"
-  end
-
-  def message
-    @msg
-  end
-end
-
-class AssertExceptionError < RuntimeError
-  def initialize(&block)
-    @msg = "Assertion " + block.to_source + " failed to throw an exception"
-  end
-
-  def message
-    @msg
   end
 end
