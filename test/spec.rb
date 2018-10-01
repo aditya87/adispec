@@ -46,7 +46,9 @@ describe('Array') {
   }
 
   describe('error cases') {
-    setup {
+    @subject = Arr.new()
+
+    cleanup {
       @subject = Arr.new()
     }
 
