@@ -6,7 +6,9 @@ require_relative './section'
 
 def describe(desc, &func)
   sp = Section.new(desc)
-  puts desc.blue + ":"
+  pad = [' '] * Section::specstack.length * ''
+  puts
+  puts pad + desc.blue + ":"
   func.call
   Section::specstack.pop
   if Section::specstack.empty?
@@ -23,7 +25,8 @@ EOM
 end
 
 def it(desc, &func)
-  print desc + ": "
+  pad = [' '] * Section::specstack.length * ''
+  print pad + desc + ": "
   Section::lastspec.inc_tests
   begin
     Section::lastspec.run_setups

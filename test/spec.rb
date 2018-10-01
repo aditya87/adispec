@@ -13,25 +13,26 @@ describe('Array') {
         assert { @subject.size == 0 }
       }
 
-      it('lets you append to itself') {
-        @subject.append(5)
-        @subject.append(2)
-        assert { @subject.size == 2 }
-      }
+      describe('appending, reading and replacing') {
+        setup {
+          @subject.append(5)
+          @subject.append(2)
+        }
 
-      it('lets you get elements at indices') {
-        @subject.append(5)
-        @subject.append(2)
-        assert { @subject.get(0) == 5 }
-        assert { @subject.get(1) == 2 }
-      }
+        it('lets you append to itself') {
+          assert { @subject.size == 2 }
+        }
 
-      it('lets you replace elements') {
-        @subject.append(5)
-        @subject.append(2)
-        @subject.put(0, 1)
-        assert { @subject.get(0) == 1 }
-        assert { @subject.get(1) == 2 }
+        it('lets you get elements at indices') {
+          assert { @subject.get(0) == 5 }
+          assert { @subject.get(1) == 2 }
+        }
+
+        it('lets you replace elements') {
+          @subject.put(0, 1)
+          assert { @subject.get(0) == 1 }
+          assert { @subject.get(1) == 2 }
+        }
       }
     }
 
