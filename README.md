@@ -1,6 +1,6 @@
 # adispec
 
-Dead simple ruby testing and assertion library. No fancy matchers. Just `assert`
+Simple ruby testing and assertion library. No fancy matchers. Just `assert`
 with a block.
 
 ### how to write specs
