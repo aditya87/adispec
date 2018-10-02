@@ -29,7 +29,9 @@ def it(desc, &func)
   print pad + desc + ": "
   Section::lastspec.inc_tests
   begin
-    Section::lastspec.run_setups
+    Section::specstack.each do |spec|
+      spec.run_setups
+    end
     func.call
     Section::lastspec.run_cleanups
   rescue BlockError
