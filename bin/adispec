@@ -13,6 +13,11 @@ EOM
   exit 1
 end
 
+if !ARGV.empty? && (ARGV[0] == "version" || ARGV[0] == "--version" || ARGV[0] == "-v")
+  puts "adispec 0.3.0"
+  exit 0
+end
+
 dirname = ARGV.empty? ? "specs" : ARGV[0]
 raise "Could not find #{dirname}: No such file or directory" unless Dir.exist?(dirname)
 
