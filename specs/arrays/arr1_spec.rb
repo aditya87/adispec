@@ -1,4 +1,4 @@
-require_relative '../lib/adispec'
+require 'adispec'
 require_relative './arr'
 
 describe('Array') {

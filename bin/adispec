@@ -7,11 +7,11 @@ raise "Could not find #{dirname}: No such file or directory" unless Dir.exist?(d
 
 Suite.new()
 
-Dir["#{dirname}/*spec.rb"].each { |file|
+Dir["#{dirname}/**/*spec.rb"].each { |file|
   Suite.stacks.push file
 }
 
-Dir["#{dirname}/*spec.rb"].each { |file|
+Dir["#{dirname}/**/*spec.rb"].each { |file|
   load file
 }
 
