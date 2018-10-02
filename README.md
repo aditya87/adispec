@@ -47,7 +47,7 @@ Sample spec:
 
 ### how to run
 
-It runs all files in your specs directory that end with `\_spec.rb`. Recursively
+It runs all files in your specs directory that end with `_spec.rb`. Recursively
 finds sub-directories.
 
 * `$ adispec <PATH_TO_SPECS_DIRECTORY>`
