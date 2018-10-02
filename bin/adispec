@@ -2,6 +2,17 @@
 
 require 'adispec'
 
+begin
+  raise "help" if (!ARGV.empty? && (ARGV[0] == "--help" || ARGV[0] == "-h" || ARGV[0] == "help" || ARGV.length > 1))
+rescue
+  puts <<EOM
+Usage:
+  adispec <PATH_TO_SPECS_DIRECTORY>
+  adispec (assumes that all specs are located in the specs directory)
+EOM
+  exit 1
+end
+
 dirname = ARGV.empty? ? "specs" : ARGV[0]
 raise "Could not find #{dirname}: No such file or directory" unless Dir.exist?(dirname)
 
