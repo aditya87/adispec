@@ -1,5 +1,3 @@
-require_relative './adispec'
-
 class Suite
   def initialize
     @@passes = 0
@@ -36,13 +34,3 @@ class Suite
     @@stacks
   end
 end
-
-Suite.new()
-
-Dir["specs/*spec.rb"].each { |file|
-  Suite.stacks.push file
-}
-
-Dir["specs/*spec.rb"].each { |file|
-  load file
-}

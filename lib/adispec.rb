@@ -3,6 +3,7 @@ require 'colorize'
 require_relative './exceptions'
 require_relative './assertions'
 require_relative './section'
+require_relative './suite'
 
 def describe(desc, &func)
   sp = Section.new(desc)
