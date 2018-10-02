@@ -13,10 +13,15 @@ def describe(desc, &func)
   Section::specstack.pop
   if Section::specstack.empty?
     puts
-    msg = <<EOM
-Result: #{sp.tests} ran, #{sp.passes.to_s.green} #{"passed".green}, #{sp.fails.to_s.red} #{"failed".red}
-EOM
-    puts msg
+    Suite::stacks.pop
+    Suite.inc_tests sp.tests
+    Suite.inc_passes sp.passes
+    Suite.inc_fails sp.fails
+    puts "Result: #{Suite::tests} ran, "\
+      "#{Suite::passes.to_s.green} "\
+      "#{"passed".green}, "\
+      "#{Suite::fails.to_s.red} "\
+      "#{"failed".red}" if Suite::stacks.empty?
   else
     Section::lastspec.inc_tests sp.tests
     Section::lastspec.inc_passes sp.passes
