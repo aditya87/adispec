@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'adispec'
-  s.version     = '0.3.0'
+  s.version     = '0.4.0'
   s.date        = '2018-10-01'
   s.summary     = "Keep ruby tests simple"
   s.description = "Testing/assertion library for Ruby"
